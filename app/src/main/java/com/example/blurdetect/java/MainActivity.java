@@ -80,6 +80,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityView 
 
         mRextCpuArchitecture.setText(getString(R.string.cpu_architecture, System.getProperty("os.arch")));
         mStatusFromRenderScript.setVisibility(View.VISIBLE);
+
+        presenter = new MainPresenter(this);
     }
 
     @Override
