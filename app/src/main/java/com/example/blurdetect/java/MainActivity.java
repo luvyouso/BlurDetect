@@ -20,8 +20,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.example.blurdetect.R;
-import com.jain.ullas.imageblurdetection.MainActivityView;
-import com.jain.ullas.imageblurdetection.MainPresenter;
 
 import org.jetbrains.annotations.NotNull;
 import org.opencv.android.BaseLoaderCallback;
@@ -32,17 +30,15 @@ import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfDouble;
 import org.opencv.imgproc.Imgproc;
-
 import java.text.DecimalFormat;
-
 
 public class MainActivity extends AppCompatActivity implements MainActivityView {
 
-    private final String TAG = "MainActivity";
-    private final int PICK_IMAGE_REQUEST_CODE = 1001;
-    private final int BLUR_THRESHOLD = 200;
-    private final String BLURRED_IMAGE = "BLURRED IMAGE";
-    private final String NOT_BLURRED_IMAGE = "NOT BLURRED IMAGE";
+    public String TAG = "MainActivity";
+    public static final int PICK_IMAGE_REQUEST_CODE = 1001;
+    public static final int BLUR_THRESHOLD = 200;
+    public static final String BLURRED_IMAGE = "BLURRED IMAGE";
+    public static final String NOT_BLURRED_IMAGE = "NOT BLURRED IMAGE";
 
     private Mat sourceMatImage;
     private MainPresenter presenter;
