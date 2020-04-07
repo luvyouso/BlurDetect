@@ -224,17 +224,15 @@ public class MainActivity_java extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                ImageView croppedImageView = (ImageView) findViewById(R.id.imageView);
-                croppedImageView.setImageBitmap(myBitmap);
                 imageView.setImageBitmap(myBitmap);
-             // Bitmap map=getResizedBitmap(myBitmap,700,1200);
+              Bitmap map=getResizedBitmap(myBitmap,1000,1500);
                /* Glide.with(this)
                         .asBitmap()
                         .load(picUri)
                         .centerCrop()
                         .into(imageView);*/
                 Log.e("mypicUri",":"+picUri);
-                isBlurredImage(myBitmap);
+                isBlurredImage(map);
 //as sugestion
 
             } else {
@@ -255,8 +253,8 @@ public class MainActivity_java extends AppCompatActivity {
                         .load(picUri)
                         .centerCrop()
                         .into(imageView);*/
-              //  Bitmap map=getResizedBitmap(myBitmap,700,1200);
-                isBlurredImage(myBitmap);
+                Bitmap map=getResizedBitmap(myBitmap,700,1100);
+                isBlurredImage(map);
 
             }
 
@@ -313,13 +311,13 @@ public class MainActivity_java extends AppCompatActivity {
         //float bitmapRatio = (float) width / (float) height;
         if(width>height){
             // if (bitmapRatio > 0) {
-            final float ratio = (float) width / (float) width;
+            final float ratio = (float) width / (float) mWidth;
             width = mWidth;
             height = (int) (height / ratio);
 
             // height = (int) (width / bitmapRatio);
         } else if(height>width) {
-            final float ratio=(float) height / (float) height;
+            final float ratio=(float) height / (float) mHieght;
             height = mHieght;
             width = (int) (width / ratio);
         }else {
@@ -450,7 +448,7 @@ public class MainActivity_java extends AppCompatActivity {
         opt.inPreferredConfig = Bitmap.Config.ARGB_8888;
 
         int l = CvType.CV_8UC1;
-         matImage = new Mat();
+        // matImage = new Mat();
         Utils.bitmapToMat(image, matImage);
         Mat matImageGrey = new Mat();
         Imgproc.cvtColor(matImage, matImageGrey, Imgproc.COLOR_BGR2GRAY);
