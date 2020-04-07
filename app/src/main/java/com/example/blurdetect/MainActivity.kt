@@ -3,7 +3,6 @@ package com.example.blurdetect
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -11,6 +10,7 @@ import android.util.Pair
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.jain.ullas.imageblurdetection.MainActivityView
 import com.jain.ullas.imageblurdetection.MainPresenter
@@ -25,7 +25,7 @@ import org.opencv.core.MatOfDouble
 import org.opencv.imgproc.Imgproc
 import java.text.DecimalFormat
 
-class MainActivity : AppCompatActivity(),MainActivityView {
+class MainActivity : AppCompatActivity(), MainActivityView {
     companion object {
         private const val TAG = "MainActivity"
         const val PICK_IMAGE_REQUEST_CODE = 1001
@@ -54,7 +54,8 @@ class MainActivity : AppCompatActivity(),MainActivityView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        textCpuArchitecture.text = getString(R.string.cpu_architecture, System.getProperty("os.arch"))
+        textCpuArchitecture.text =
+            getString(R.string.cpu_architecture, System.getProperty("os.arch"))
         statusFromRenderScript.visibility = View.VISIBLE
     }
 
@@ -63,8 +64,11 @@ class MainActivity : AppCompatActivity(),MainActivityView {
             type = "image/*"
             action = Intent.ACTION_GET_CONTENT
             startActivityForResult(
-                Intent.createChooser(this,
-                    getString(R.string.gallery_pick_image)), PICK_IMAGE_REQUEST_CODE)
+                Intent.createChooser(
+                    this,
+                    getString(R.string.gallery_pick_image)
+                ), PICK_IMAGE_REQUEST_CODE
+            )
         }
     }
 
@@ -130,12 +134,27 @@ class MainActivity : AppCompatActivity(),MainActivityView {
             visibility = View.VISIBLE
             when (score < BLUR_THRESHOLD) {
                 true -> {
-                    text = getString(R.string.result_from_opencv, BLURRED_IMAGE, BLUR_THRESHOLD.toString(), score.toString())
+                    text = getString(
+                        R.string.result_from_opencv,
+                        BLURRED_IMAGE,
+                        BLUR_THRESHOLD.toString(),
+                        score.toString()
+                    )
                     setTextColor(ContextCompat.getColor(this@MainActivity, R.color.blurred_image))
                 }
                 false -> {
-                    text = getString(R.string.result_from_opencv, NOT_BLURRED_IMAGE, BLUR_THRESHOLD.toString(), score.toString())
-                    setTextColor(ContextCompat.getColor(this@MainActivity, R.color.not_blurred_image))
+                    text = getString(
+                        R.string.result_from_opencv,
+                        NOT_BLURRED_IMAGE,
+                        BLUR_THRESHOLD.toString(),
+                        score.toString()
+                    )
+                    setTextColor(
+                        ContextCompat.getColor(
+                            this@MainActivity,
+                            R.color.not_blurred_image
+                        )
+                    )
                 }
             }
         }
@@ -150,7 +169,12 @@ class MainActivity : AppCompatActivity(),MainActivityView {
                     setTextColor(ContextCompat.getColor(this@MainActivity, R.color.blurred_image))
                 }
                 false -> {
-                    setTextColor(ContextCompat.getColor(this@MainActivity, R.color.not_blurred_image))
+                    setTextColor(
+                        ContextCompat.getColor(
+                            this@MainActivity,
+                            R.color.not_blurred_image
+                        )
+                    )
                 }
             }
         }
